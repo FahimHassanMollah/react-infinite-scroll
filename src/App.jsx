@@ -12,7 +12,7 @@ const App = () => {
   const loaderRef = useRef(null);
   const fetchProducts = async () => {
     const response = await fetch(
-      `https://dummyjson.com/products?limit=${limit}&skip=${page*limit
+      `https://dummyjson.com/products?limit=${limit}&skip=${page * limit
       }`
     );
     const data = await response.json();
@@ -29,15 +29,17 @@ const App = () => {
   };
   useInfiniteScroll(loaderRef, hasMoreData, fetchProducts);
 
-  
+
 
   return (
     <>
       <h4 className="p-3">Infinite scroll</h4>
       {products.map((product) => <ProductCard key={product.id} product={product} />)}
-      <div ref={loaderRef}>
-        <Loader />
-      </div>
+      {
+        hasMoreData && <div ref={loaderRef}>
+          <Loader />
+        </div>
+      }
     </>
   )
 }
