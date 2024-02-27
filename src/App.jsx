@@ -33,6 +33,7 @@ const App = () => {
 
   return (
     <>
+      <h4 className="p-3">Infinite scroll</h4>
       {products.map((product) => <ProductCard key={product.id} product={product} />)}
       <div ref={loaderRef}>
         <Loader />
