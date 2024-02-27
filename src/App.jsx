@@ -10,9 +10,6 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [hasMoreData, setHasMoreData] = useState(true);
   const loaderRef = useRef(null);
-
-  useInfiniteScroll(loaderRef, hasMoreData, fetchProducts);
-
   const fetchProducts = async () => {
     const response = await fetch(
       `https://dummyjson.com/products?limit=${limit}&skip=${page*limit
@@ -30,6 +27,9 @@ const App = () => {
       setPage((prevPage) => prevPage + 1);
     }
   };
+  useInfiniteScroll(loaderRef, hasMoreData, fetchProducts);
+
+  
 
   return (
     <>
